@@ -2,8 +2,8 @@
 
 from time import time
 from base64 import b32decode
-from Crypto.Hash import SHA
-from Crypto.Hash.HMAC import HMAC
+from hashlib import sha1
+import hmac
 
 INTERVAL = 30
 CODE_LEN = 6
@@ -22,7 +22,7 @@ def compute_mac(key, cur_time=None):
     Compute the HMAC-SHA1 of the current interval using the KEY.
     '''
     interval = current_interval(cur_time)
-    mac = HMAC(b32decode(key), msg=interval.to_bytes(byteorder='big', length=8), digestmod=SHA)
+    mac = hmac.new(b32decode(key), interval.to_bytes(byteorder='big', length=8), sha1)
     return mac.digest()
 
 def dynamic_truncate(mac):
