@@ -1,6 +1,7 @@
+KEY = 'DUMMYKEY'
 import time,base64,hashlib,hmac
 mac=hmac.new(
-    base64.b32decode('DUMMYKEY'),
+    base64.b32decode(KEY),
     (int(time.time())//30).to_bytes(byteorder='big',length=8),
     hashlib.sha1
 ).digest()
