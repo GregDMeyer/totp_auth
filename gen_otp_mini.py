@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 KEY = 'DUMMYKEY'
 import time,base64,hashlib,hmac
 mac=hmac.new(
